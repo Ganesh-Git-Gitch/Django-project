@@ -1,0 +1,62 @@
+{% extends 'Base.html' %}
+{% block title %}profile::
+    {% if request.user.role_type == 0 %}
+    Guest
+    {% elif request.user.role_type == 1 %}
+    Doctor
+    {% else %}
+    patient
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="card mr-2 col-md-3 shadow-lg border border-warning mt-3 ">
+		<h4>Profile</h4>
+		<h5>Name : {{request.user.username}}</h5>
+		<h5>Id : {{request.user.eid}}</h5>
+		<h5>status : {% if request.user.is_active == 1 %}Active{% else %}Inactive{% endif %}</h5>
+	</div>
+	<div class="card col shadow-lg border border-info mt-3 ">
+		<h4>{{request.user.eid}} -> Details</h4>
+		<table>
+			<tr>
+				<td>Name </td>
+				<td>{{request.user.username}}</td>
+				<td>specialites  </td>
+				<td>{{request.user.doctorprofile.dspecialites}}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{request.user.email}}</td>
+				<td>Account Status</td>
+				<td>
+					{% if request.user.is_active == 1 %}
+					<h5 class="badge badge-success">Active</h5>
+					{% else %}
+					<span class="badge badge-success">InActive</span>
+					{% endif %}
+				</td>
+				<td>Role Type</td>
+				<td>
+					{% if request.user.role_type == 0 %}
+					<h4 class="badge badge-warning">Guest</h4>
+					{% elif request.user.role_type == 1 %}
+					<h4 class="badge badge-info">Doctor</h4>
+					{% elif request.user.role_type == 2 %}
+					<h4 class="badge badge-success">patient</h4>
+					{% else %}
+					<h4 class="badge badge-success">Manager</h4>
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<td>Account created</td>
+				<td>{{request.user.date_joined}}</td>
+				<td>Last_Login</td>
+				<td>{{request.user.last_login}}</td>
+			</tr>
+		</table>
+		<a href="{% url 'upfe' %}" class="btn btn-secondary my-2">Update Profile</a>
+	</div>
+</div>
+{% endblock %}

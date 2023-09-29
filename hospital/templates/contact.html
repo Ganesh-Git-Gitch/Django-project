@@ -1,0 +1,37 @@
+{% include 'base.html' %}
+
+<style>
+  .mydivstyle:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    transform: translatey(-20px);
+  }
+</style>
+
+
+
+
+{% block content %}
+<div class="container" style="margin-top: 50px;">
+	  <h1 class="text-center ">Contact us</h1>
+	 <div class="row mt-5 text-center">
+	 	<div class="col-lg-3 col-sm-6 mydivstyle">
+      <h4><i class="fas fa-phone-square"> Contact Detail</i></h4>
+      <p class="text-danger font-weight-bold mt-3"><a href="tel: +639800121055">+639800121055</a></p>
+    </div>
+    <div class="col-lg-3 col-sm-6 mydivstyle">
+      <h4><i class="<i fa fa-envelope"> Send-Email</i></h4>
+      <p class="font-weight-bold mt-3"><a href="mailto:ganideshaboina@gmail.com">ganideshaboina@gmail.com</a></p>
+    </div>
+    <div class="col-lg-3 col-sm-6 mydivstyle">
+      <h4><i class="fa fa-address-card" aria-hidden="true"></i> Office Address</h4>
+      <p class="font-weight-bold mt-3"><a href="http://maps.google.com/maps?q=khammam">Khammam,Belief</a></p>
+    </div>
+    <div class="col-lg-3 col-sm-6 mydivstyle">
+      <h4><i class="fa fa-address-card" aria-hidden="true"></i>Office Time</h4>
+      <p class="font-weight-bold mt-3">9AM-5PM</p>
+    </div>
+</div>
+	 	
+	 
+{% endblock content %}
+{% include 'footer.html' %}

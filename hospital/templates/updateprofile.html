@@ -1,0 +1,47 @@
+{% extends 'Base.html' %}
+{% block title %}Update Profile{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h4 class="card-title">Update Profile</h4>
+                </div>
+                <div class="card-body">
+                    {% if request.user.role_type == 1 %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <a href="{% url 'pf' %}" class="btn btn-secondary">Back</a>
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    {% elif request.user.role_type == 2 %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <a href="{% url 'pf' %}" class="btn btn-secondary">Back</a>
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

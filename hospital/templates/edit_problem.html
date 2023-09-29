@@ -1,0 +1,29 @@
+{% extends 'Base.html' %}
+{% block title %}edit problem{% endblock title %}
+{% block content %}
+
+<div class="card mx-auto my-auto col-md">
+    <div class="card-body">
+        <h1>Edit Problem</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row">
+        <div class="col">
+            {% if problem.problem_status == 'Success' %}
+            <input type="submit" value="Edit" class="btn btn-danger btn-sm form-control" disabled>
+            {% else %}
+            <input type="submit" value="Edit" class="btn btn-danger btn-sm form-control">
+            {% endif %}
+        </div>
+        <div class="col">
+            <a href="{% url 'create_problem' %}" class="btn btn-info btn-sm form-control">back</a>
+        </div>
+        </div>
+    </form>
+
+
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'Base.html' %}
+{% block title %}Patient Details{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="card col-md-4 mt-3 shadow-lg border border-dark">
+            <h4 class="card-header">Patient Details</h4>
+            <div class="card-body">
+                <p>Problem: {{ problem.prob }}</p>
+                <p>Description: {{ problem.desc_of_problem }}</p>
+                <p>Date of Occurrence: {{ problem.date_of_occurrence }}</p>
+                <!-- Other problem details here -->
+            
+                <h4 class="card-header">Patient Profile</h4>
+                <p>Name: {{ patient_profile.ptd.username }}</p>
+                <p>Age: {{ patient_profile.ptage }} years</p>
+                <p>Gender: {{ patient_profile.get_pgr_display }}</p>
+                <p>Weight: {{patient_profile.pweigth}} Kgs</p>
+                <div class="card-footer">
+                    <a href="{% url 'docview' %}" class="btn btn-info form-control">Back</a>
+                </div>
+            </div>
+        </div>
+        <div class="card col mt-3 ml-2 shadow-lg border border-dark h-100">
+            <h4 class="card-header">Solution Box</h4>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for i in solutionform %}
+                    {{i}}
+                    {% endfor %}
+                    <input type="submit" class="form-control btn btn-success mt-2">
+                </form>
+
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

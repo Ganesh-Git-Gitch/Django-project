@@ -1,0 +1,45 @@
+{% extends 'Base.html' %}
+{% block title %}Patient Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ patient_profile.ptd.username }}</h2>
+    <h3>Your Details</h3>
+    <ul>
+        <li><strong>Name:</strong> {{ patient_profile.ptd.username }}</li>
+        <li><strong>Age:</strong> {{ patient_profile.ptage }} years</li>
+        <li><strong>Gender:</strong> {{ patient_profile.get_pgr_display }}</li>
+        <li><strong>Weight:</strong> {{ patient_profile.pweigth }} Kgs</li>
+    </ul>
+
+    <h3>Your Problem Solutions</h3>
+    <table class="table table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Sno.</th>
+                <th>Date of Requested</th>
+                <th>Date Of Solution</th>
+                <th>Problem</th>
+                <th>Doctor</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solution in problem_solutions %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ solution.problem.req_date }}</td>
+                <td>{{ solution.solution_date }}</td>
+                <td>{{ solution.problem.prob }}</td>
+                <td>{{ solution.doctor.dch.username }},<a href="mailto:{{ solution.doctor.dch.email}}">{{ solution.doctor.dch.email}}</a></td>
+                <td>{{ solution.solution_text }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No problem solutions available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

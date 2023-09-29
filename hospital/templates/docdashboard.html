@@ -1,0 +1,42 @@
+{% extends 'Base.html' %}
+{% block title %}Doctor Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-3 shadow-lg border border-dark">
+    <h4 class="card-header">Successful Problem Requests Dashboard</h4>
+    <div class="card-body">
+    <table class="table table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Sno.</th>
+                <th>Patient Name</th>
+                <th>Problem</th>
+                <th>Solution</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solution in solutions %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ solution.problem.patient_by.username }}</td>
+                <td>{{ solution.problem.prob }}</td>
+                <td>{{ solution.solution_text }}</td>
+                <td><span class="badge badge-success">{{solution.problem.problem_status}}</span></td>
+                <td>
+                    <a href="{% url 'edit_solution' solution.id  %}" class="btn btn-primary">Edit Solution</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No successful problem requests found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'Base.html' %}
+{% block title  %}paitent deatils{% endblock title  %}
+{% block content %}
+<div class="container">
+<div class="card mt-2 mr-2 ml-2 shadow-lg">
+    <h4 class="card-header">Paitent requested</h4>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Sno.no</th>
+                    <th>Name of the paitent</th>
+                    <th>Problem</th>
+                    <th>Date of Occurrence</th>
+                    <th>Requested Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for problem in prob %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{problem.patient_by.username }}</td>
+                    <td>{{problem.prob}}</td>
+                    <td>{{ problem.date_of_occurrence }}</td>
+                    <td>{{problem.req_date}}</td>
+                    <td>{{problem.problem_status}}</td>
+                    <td>
+                        <a href="{% url 'view_problem_details' problem.id %}" class="btn btn-info btn-sm">View</a>
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No problems found .</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+</div>
+{% endblock content %}
+
